@@ -11,6 +11,11 @@ collections:
     label: "Website aanpassen"
 
     files:
+
+      # ==========================================
+      # BIJEENKOMSTEN EN AGENDA
+      # ==========================================
+
       - name: "bijeenkomsten"
         label: "Bijeenkomsten en agenda"
         file: "content/bijeenkomsten.json"
@@ -112,6 +117,11 @@ collections:
 
               - {label: "Tekst onder de foto", name: "bijschrift", widget: "string", required: false}
 
+
+      # ==========================================
+      # HOME
+      # ==========================================
+
       - name: "home"
         label: "Home"
         file: "content/home.json"
@@ -173,6 +183,11 @@ collections:
               - {label: "Tekst", name: "tekst", widget: "text", required: false}
               - {label: "Tekst op de knop", name: "knop_tekst", widget: "string"}
 
+
+      # ==========================================
+      # OVER ONS
+      # ==========================================
+
       - name: "overons"
         label: "Over ons"
         file: "content/overons.json"
@@ -213,6 +228,11 @@ collections:
                 widget: "image"
                 required: false
                 hint: "Zonder foto staat er een nummer."
+
+
+      # ==========================================
+      # MEDIA
+      # ==========================================
 
       - name: "media"
         label: "Media (YouTube, podcast en Instagram)"
@@ -307,17 +327,110 @@ collections:
               - {label: "Tekst onder de titel", name: "tekst", widget: "text", required: false}
               - {label: "Tekst op de knop", name: "knop_tekst", widget: "string"}
 
+
+      # ==========================================
+      # GALERIJ - NIEUW
+      # ==========================================
+
+      - name: "galerij"
+        label: "Galerij beheren"
+        file: "content/galerij.json"
+        format: "json"
+
+        fields:
+
+          - label: "Teksten bovenaan de galerij"
+            name: "pagina"
+            widget: "object"
+            collapsed: true
+
+            fields:
+
+              - label: "Kleine tekst boven de titel"
+                name: "eyebrow"
+                widget: "string"
+                required: false
+
+              - label: "Titel van de galerij"
+                name: "titel"
+                widget: "string"
+
+              - label: "Beschrijving bovenaan de galerij"
+                name: "tekst"
+                widget: "text"
+                required: false
+
+
+          - label: "Evenementen en foto's"
+            name: "evenementen"
+            widget: "list"
+            label_singular: "evenement"
+            summary: "{{fields.datum}} · {{fields.titel}}"
+            required: false
+            default: []
+
+            hint: "Voeg hier een evenement toe. Je kunt per evenement meerdere foto's uploaden. De evenementen verschijnen in dezelfde volgorde op de website."
+
+            fields:
+
+              - label: "Naam van het evenement"
+                name: "titel"
+                widget: "string"
+                hint: "Bijvoorbeeld: Faith & Business Network bijeenkomst"
+
+              - label: "Datum van het evenement"
+                name: "datum"
+                widget: "string"
+                required: false
+                hint: "Bijvoorbeeld: 14 november 2026"
+
+              - label: "Beschrijving van het evenement"
+                name: "beschrijving"
+                widget: "text"
+                required: false
+                hint: "Vertel kort wat er tijdens het evenement is gebeurd."
+
+              - label: "Foto's van het evenement"
+                name: "fotos"
+                widget: "list"
+                label_singular: "foto"
+                summary: "{{fields.beschrijving}}"
+                required: false
+                default: []
+
+                hint: "Klik op de plus om een foto toe te voegen. Je kunt zoveel foto's toevoegen als je wilt."
+
+                fields:
+
+                  - label: "Foto uploaden"
+                    name: "bestand"
+                    widget: "image"
+                    hint: "Selecteer een foto vanaf je telefoon of computer."
+
+                  - label: "Beschrijving van de foto"
+                    name: "beschrijving"
+                    widget: "string"
+                    required: false
+                    hint: "Beschrijf kort wat op de foto staat. Bijvoorbeeld: Ondernemers tijdens de bijeenkomst."
+
+
+      # ==========================================
+      # LINKS EN FOOTER
+      # ==========================================
+
       - name: "algemeen"
         label: "Links en onderkant van de website"
         file: "content/algemeen.json"
         format: "json"
 
         fields:
+
           - label: "Links"
             name: "links"
             widget: "object"
 
             fields:
+
               - label: "Instagram-link"
                 name: "instagram"
                 widget: "string"
@@ -343,12 +456,16 @@ collections:
                   - '^https://\S+$'
                   - "De link moet beginnen met https://"
 
+
           - label: "Onderkant van elke pagina"
             name: "footer"
             widget: "object"
 
             fields:
-              - {label: "Tekst links onderaan", name: "tekst", widget: "string"}
+
+              - label: "Tekst links onderaan"
+                name: "tekst"
+                widget: "string"
 
               - label: "Extra tekst rechts onderaan"
                 name: "notitie"
