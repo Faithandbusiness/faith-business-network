@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="description"
+    content="Bekijk de foto's van eerdere bijeenkomsten en evenementen van Faith & Business Network."
+  >
+
+  <meta name="theme-color" content="#f6f1e9">
+
+  <title>Galerij - Faith & Business Network</title>
+
+  <link rel="stylesheet" href="stijl.css">
+
+  <style>
+    .gallery-intro {
+      padding: 95px 0 75px;
+      text-align: center;
+    }
+
+    .gallery-intro .eyebrow {
+      color: var(--gold-dark);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .gallery-title {
+      max-width: 850px;
+      margin: 18px auto 24px;
+      font-family: Georgia, serif;
+      font-size: clamp(38px, 5vw, 64px);
+      font-weight: normal;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    .gallery-description {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .gallery-section {
+      padding: 30px 0 100px;
+    }
+
+    .gallery-event {
+      margin-bottom: 85px;
+    }
+
+    .gallery-event-header {
+      margin-bottom: 32px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .gallery-event-date {
+      margin-bottom: 12px;
+      color: var(--gold-dark);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .gallery-event-title {
+      margin-bottom: 15px;
+      color: var(--ink);
+      font-family: Georgia, serif;
+      font-size: clamp(28px, 4vw, 39px);
+      font-weight: normal;
+    }
+
+    .gallery-event-description {
+      max-width: 700px;
+      margin-bottom: 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .gallery-item {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      border-radius: 3px;
+      background: var(--sand);
+      cursor: zoom-in;
+      aspect-ratio: 4 / 3;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.045);
+    }
+
+    .gallery-item:focus-visible {
+      outline: 3px solid var(--gold-dark);
+      outline-offset: 4px;
+    }
+
+    .gallery-empty {
+      padding: 80px 25px;
+      text-align: center;
+      background: var(--paper);
+      border: 1px solid var(--line);
+    }
+
+    .gallery-empty h2 {
+      margin-bottom: 20px;
+      font-size: 35px;
+      font-weight: normal;
+    }
+
+    .gallery-empty p {
+      max-width: 550px;
+      margin: 0 auto;
+      color: var(--muted);
+    }
+
+    .gallery-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 65px 30px;
+      background: rgba(20, 17, 14, 0.94);
+    }
+
+    .gallery-lightbox.is-open {
+      display: flex;
+    }
+
+    .gallery-lightbox-image {
+      display: block;
+      max-width: 100%;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .gallery-lightbox-close {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      width: 48px;
+      height: 48px;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font-size: 38px;
+      cursor: pointer;
+    }
+
+    .gallery-lightbox-caption {
+      position: absolute;
+      bottom: 15px;
+      left: 20px;
+      right: 20px;
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-intro {
+        padding: 65px 0 45px;
+      }
+
+      .gallery-section {
+        padding-bottom: 60px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .gallery-event {
+        margin-bottom: 65px;
+      }
+
+      .gallery-lightbox {
+        padding: 65px 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gallery-item img {
+        transition: none;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+
+    <div class="container header-inner">
+
+      <a
+        class="brand"
+        href="index.html"
+        aria-label="Faith & Business Network — Home"
+      >
+        <span class="brand-name">Faith</span>
+        <span class="brand-subtitle">IN BUSINESS</span>
+      </a>
+
+      <button
+        class="menu-button"
+        id="menu-button"
+        type="button"
+        aria-controls="navigation"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+
+      <nav
+        class="navigation"
+        id="navigation"
+        aria-label="Hoofdnavigatie"
+      >
+
+        <a href="index.html">Home</a>
+
+        <a href="over-ons.html">Over ons</a>
+
+        <a href="bijeenkomsten.html">Bijeenkomsten</a>
+
+        <a
+          href="galerij.html"
+          class="active"
+          aria-current="page"
+        >
+          Galerij
+        </a>
+
+        <div class="has-submenu">
+
+          <a href="media.html">Media</a>
+
+          <ul class="submenu" aria-label="Media-opties">
+
+            <li>
+              <a href="youtube.html">YouTube</a>
+            </li>
+
+            <li>
+              <a href="podcast.html">Podcast</a>
+            </li>
+
+            <li>
+              <a href="instagram.html">Instagram</a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- GALERIJ -->
+  <main>
+
+    <section class="gallery-intro">
+
+      <div class="container">
+
+        <p class="eyebrow" id="gallery-eyebrow">
+          Samen beleven
+        </p>
+
+        <h1 class="gallery-title" id="gallery-title">
+          Onze galerij
+        </h1>
+
+        <p class="gallery-description" id="gallery-description">
+          Een terugblik op bijzondere ontmoetingen,
+          inspirerende gesprekken en waardevolle
+          momenten binnen Faith & Business Network.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- FOTO'S VAN EVENEMENTEN -->
+    <section class="gallery-section">
+
+      <div class="container">
+
+        <div id="gallery-events"></div>
+
+        <div
+          class="gallery-empty"
+          id="gallery-empty"
+          hidden
+        >
+
+          <h2>De eerste foto's volgen binnenkort</h2>
+
+          <p>
+            Binnenkort delen we hier mooie momenten
+            van onze bijeenkomsten en evenementen.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOTO VERGROTEN -->
+  <div
+    class="gallery-lightbox"
+    id="gallery-lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Foto bekijken"
+    aria-hidden="true"
+  >
+
+    <button
+      class="gallery-lightbox-close"
+      id="gallery-close"
+      type="button"
+      aria-label="Sluiten"
+    >
+      &times;
+    </button>
+
+    <img
+      class="gallery-lightbox-image"
+      id="gallery-large-image"
+      alt=""
+    >
+
+    <p
+      class="gallery-lightbox-caption"
+      id="gallery-caption"
+    ></p>
+
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="container footer-inner">
+
+      <p data-tekst="algemeen.footer.tekst">
+        © 2026 Faith & Business Network
+      </p>
+
+      <p>
+
+        <a
+          href="https://www.instagram.com/faithandbusinessnetwork/"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-link="algemeen.links.instagram"
+        >
+          Instagram ↗
+        </a>
+
+        <span
+          class="footer-note"
+          data-tekst="algemeen.footer.notitie"
+          data-prefix=" · "
+        ></span>
+
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <!-- SCRIPTS -->
+  <script src="menu.js"></script>
+  <script src="inhoud.js"></script>
+
+  <script>
+    (() => {
+      const eventsContainer =
+        document.getElementById('gallery-events');
+
+      const emptyMessage =
+        document.getElementById('gallery-empty');
+
+      const lightbox =
+        document.getElementById('gallery-lightbox');
+
+      const largeImage =
+        document.getElementById('gallery-large-image');
+
+      const caption =
+        document.getElementById('gallery-caption');
+
+      const closeButton =
+        document.getElementById('gallery-close');
+
+      let previousFocus = null;
+
+      function createElement(tag, className, text) {
+        const element = document.createElement(tag);
+
+        if (className) {
+          element.className = className;
+        }
+
+        if (typeof text === 'string') {
+          element.textContent = text;
+        }
+
+        return element;
+      }
+
+      function safeImagePath(value) {
+        if (typeof value !== 'string') {
+          return '';
+        }
+
+        const path = value.trim();
+
+        if (!path) {
+          return '';
+        }
+
+        if (
+          path.startsWith('//') ||
+          /^[a-z][a-z0-9+.-]*:/i.test(path)
+        ) {
+          try {
+            const url = new URL(path);
+
+            return url.protocol === 'https:'
+              ? url.href
+              : '';
+          } catch {
+            return '';
+          }
+        }
+
+        const cleanPath = path.replace(/^\/+/, '');
+
+        if (cleanPath.split('/').includes('..')) {
+          return '';
+        }
+
+        return cleanPath;
+      }
+
+      function openLightbox(source, description) {
+        previousFocus = document.activeElement;
+
+        largeImage.src = source;
+        largeImage.alt = description;
+
+        caption.textContent = description;
+
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+
+        document.body.style.overflow = 'hidden';
+
+        closeButton.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+
+        largeImage.removeAttribute('src');
+
+        document.body.style.overflow = '';
+
+        if (previousFocus) {
+          previousFocus.focus();
+        }
+      }
+
+      closeButton.addEventListener(
+        'click',
+        closeLightbox
+      );
+
+      lightbox.addEventListener('click', event => {
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', event => {
+        if (!lightbox.classList.contains('is-open')) {
+          return;
+        }
+
+        if (event.key === 'Escape') {
+          closeLightbox();
+        }
+
+        if (event.key === 'Tab') {
+          event.preventDefault();
+          closeButton.focus();
+        }
+      });
+
+      function renderGallery(data) {
+        const eyebrow =
+          document.getElementById('gallery-eyebrow');
+
+        const title =
+          document.getElementById('gallery-title');
+
+        const description =
+          document.getElementById('gallery-description');
+
+        if (data.pagina) {
+          if (typeof data.pagina.eyebrow === 'string') {
+            eyebrow.textContent = data.pagina.eyebrow;
+          }
+
+          if (typeof data.pagina.titel === 'string') {
+            title.textContent = data.pagina.titel;
+          }
+
+          if (typeof data.pagina.tekst === 'string') {
+            description.textContent = data.pagina.tekst;
+          }
+        }
+
+        const events = Array.isArray(data.evenementen)
+          ? data.evenementen
+          : [];
+
+        eventsContainer.replaceChildren();
+
+        let totalPhotos = 0;
+
+        events.forEach(event => {
+          if (!event || typeof event !== 'object') {
+            return;
+          }
+
+          const photos = Array.isArray(event.fotos)
+            ? event.fotos
+            : [];
+
+          const validPhotos = photos.filter(photo => {
+            return (
+              photo &&
+              typeof photo === 'object' &&
+              safeImagePath(photo.bestand)
+            );
+          });
+
+          if (validPhotos.length === 0) {
+            return;
+          }
+
+          totalPhotos += validPhotos.length;
+
+          const section =
+            createElement('section', 'gallery-event');
+
+          const header =
+            createElement('div', 'gallery-event-header');
+
+          if (event.datum) {
+            header.append(
+              createElement(
+                'p',
+                'gallery-event-date',
+                String(event.datum)
+              )
+            );
+          }
+
+          header.append(
+            createElement(
+              'h2',
+              'gallery-event-title',
+              String(event.titel || 'Bijeenkomst')
+            )
+          );
+
+          if (event.beschrijving) {
+            header.append(
+              createElement(
+                'p',
+                'gallery-event-description',
+                String(event.beschrijving)
+              )
+            );
+          }
+
+          const grid =
+            createElement('div', 'gallery-grid');
+
+          validPhotos.forEach(photo => {
+            const source = safeImagePath(photo.bestand);
+
+            const description =
+              String(
+                photo.beschrijving ||
+                event.titel ||
+                'Foto van een bijeenkomst'
+              );
+
+            const button =
+              createElement('button', 'gallery-item');
+
+            button.type = 'button';
+
+            button.setAttribute(
+              'aria-label',
+              'Vergroot foto: ' + description
+            );
+
+            const image =
+              document.createElement('img');
+
+            image.src = source;
+            image.alt = description;
+            image.loading = 'lazy';
+            image.decoding = 'async';
+
+            button.append(image);
+
+            button.addEventListener('click', () => {
+              openLightbox(source, description);
+            });
+
+            grid.append(button);
+          });
+
+          section.append(header, grid);
+
+          eventsContainer.append(section);
+        });
+
+        emptyMessage.hidden = totalPhotos > 0;
+      }
+
+      fetch('content/galerij.json', {
+        cache: 'no-cache'
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Galerij kon niet worden geladen');
+          }
+
+          return response.json();
+        })
+        .then(renderGallery)
+        .catch(error => {
+          console.error(error);
+
+          emptyMessage.hidden = false;
+          emptyMessage.querySelector('h2').textContent =
+            'De galerij is tijdelijk niet beschikbaar';
+
+          emptyMessage.querySelector('p').textContent =
+            'Probeer de pagina later opnieuw te openen.';
+        });
+    })();
+  </script>
+
+</body>
+</html>
