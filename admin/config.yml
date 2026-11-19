@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: timdekruyf07-dotcom/faith-business-network
+  repo: Faithandbusinessnetwork/faith-business-network
   branch: main
 
 media_folder: "images"
