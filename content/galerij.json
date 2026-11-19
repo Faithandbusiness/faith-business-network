@@ -4,5 +4,21 @@
     "titel": "Onze galerij",
     "tekst": "Een terugblik op bijzondere ontmoetingen, inspirerende gesprekken en waardevolle momenten binnen Faith & Business Network."
   },
-  "evenementen": []
+  "evenementen": [
+    {
+      "titel": "evenment november 2026",
+      "datum": "7 november 2026",
+      "beschrijving": "mooi evenement gehad met verschillende soorten bedrijven",
+      "fotos": [
+        {
+          "bestand": "/images/Elegant zakendiner met bloemendecoratie.png",
+          "beschrijving": ""
+        },
+        {
+          "bestand": "/images/network.png",
+          "beschrijving": ""
+        }
+      ]
+    }
+  ]
 }
